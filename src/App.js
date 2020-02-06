@@ -12,11 +12,18 @@ export default function App() {
     setRepositories(data);
   }, []); // array vazio vai indicar que ele execute apenas uma única vez
 
+  function handleFavorite(id) {
+    console.log(id);
+  }
+
   return (
     <>
       <ul>
         {repositories.map(repo => (
-          <li key={repo.id}>{repo.name}</li>
+          <li key={repo.id}>
+            {repo.name} &nbsp;
+            <button onClick={() => handleFavorite(repo.id)}>Favorite</button>
+          </li>
         ))}
       </ul>
     </>

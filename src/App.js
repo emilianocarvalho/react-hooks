@@ -15,6 +15,11 @@ export default function App() {
     fetchData();
   }, []); // Component Did Mount, vazio executa apenas uma vez
 
+  useEffect(() => {
+    const filtered = repositories.filter(repo => repo.favorite);
+    document.title = `Voce tem ${filtered.length} favorites`;
+  }, [repositories]); // Compoment Did Update
+
   function handleFavorite(id) {
     const newRepo = repositories.map(repo => {
       return repo.id === id ? { ...repo, favorite: !repo.favorite } : repo;

@@ -16,7 +16,11 @@ export default function App() {
   }, []); // Component Did Mount, vazio executa apenas uma vez
 
   function handleFavorite(id) {
-    console.log(id);
+    const newRepo = repositories.map(repo => {
+      return repo.id === id ? { ...repo, favorite: true } : repo;
+    });
+
+    setRepositories(newRepo);
   }
 
   return (
@@ -25,6 +29,7 @@ export default function App() {
         {repositories.map(repo => (
           <li key={repo.id}>
             {repo.name} &nbsp;
+            {repo.favorite && <span>(Favorite)</span>}
             <button onClick={() => handleFavorite(repo.id)}>Favorite</button>
           </li>
         ))}
